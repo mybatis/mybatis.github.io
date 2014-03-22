@@ -1,0 +1,6 @@
+---
+layout: post
+title: MyBatis 3.2.4 Released!
+---
+
+Dear Community,<br /><br />We would like to announce the release of MyBatis 3.2.4.<br /><br />Provides some minor bug fixes and enhacements. See the details at&nbsp;<a href="https://github.com/mybatis/mybatis-3/issues?milestone=4&amp;page=1&amp;state=closed">https://github.com/mybatis/mybatis-3/issues?milestone=4&amp;page=1&amp;state=closed</a><br /><br />An special remark about&nbsp;<a href="https://github.com/mybatis/mybatis-3/issues/98">issue #98</a>. In order to improve performance, some statement parsing logic has been moved to the startup process when no dynamic blocks are detected. For that purpose the value of the "parameterType" attribute is used if present (though it is still optional). This value was ignored before so in case you had a wrong value for it you will have to change it.<br /><br />It is available in <a href="https://github.com/mybatis/mybatis-3/releases">Github</a>&nbsp;and Maven Central.<br /><br />Sincerely,<br />The MyBatis Team.

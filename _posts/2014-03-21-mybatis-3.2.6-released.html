@@ -1,0 +1,6 @@
+---
+layout: post
+title: MyBatis 3.2.6 Released!
+---
+
+Dear Community,<br /><br />We are proud to announce the release of MyBatis 3.2.6.<br /><br />Provides some new features:<br /><ul><li>Caches nested selects&nbsp;</li><li>Lazy loading can be enabled only for specific relations&nbsp;</li><li>Supports returning multiple fields in a select key&nbsp;</li><li>Some other minor improvements&nbsp;</li></ul><br />See the details at <a href="https://github.com/mybatis/mybatis-3/issues?milestone=6&amp;page=1&amp;state=closed">https://github.com/mybatis/mybatis-3/issues?milestone=6&amp;page=1&amp;state=closed&nbsp;</a><br /><br />A note for users who implemented their own caches or 3rd party cache adapters. MyBatis no longer calls Cache#getReadWriteLock(). Any locking needed by the cache should be implemented internally by the cache. So in case you coded your own cache make sure it is properly synchronized. See issue <a href="https://github.com/mybatis/mybatis-3/issues/159">#159</a>.<br /><br />It is available in <a href="https://github.com/mybatis/mybatis-3/releases">Github</a> and Maven Central.<br /><br />Big thanks for your support and enjoy!
