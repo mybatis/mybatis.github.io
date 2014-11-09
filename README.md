@@ -1,6 +1,8 @@
 mybatis.github.com
 ==================
 
+![mybatis](http://mybatis.github.io/images/mybatis-logo.png)
+
 MyBatis public site
 
 For committers:
