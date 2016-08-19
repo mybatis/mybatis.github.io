@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
- 
-       http://www.apache.org/licenses/LICENSE-2.0
- 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
 
+       Copyright 2006-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
 <!--
   This DTD defines the structure of the MyBatis generator configuration file.
   Configuration files should declare the DOCTYPE as follows:
@@ -25,7 +27,7 @@
   Please see the documentation included with MyBatis generator for details on each option
   in the DTD.  You may also view documentation on-line here:
   
-  http://mybatis.org/docs/generator
+  http://www.mybatis.org/generator/
   
 -->
 
@@ -48,12 +50,21 @@
   The context element is used to describe a context for generating files, and the source
   tables.
 -->
-<!ELEMENT context (property*, plugin*, commentGenerator?, jdbcConnection, javaTypeResolver?,
+<!ELEMENT context (property*, plugin*, commentGenerator?, (connectionFactory | jdbcConnection), javaTypeResolver?,
                          javaModelGenerator, sqlMapGenerator?, javaClientGenerator?, table+)>
 <!ATTLIST context id ID #REQUIRED
   defaultModelType CDATA #IMPLIED
   targetRuntime CDATA #IMPLIED
   introspectedColumnImpl CDATA #IMPLIED>
+
+<!--
+  The connectionFactory element is used to describe the connection factory used
+  for connecting to the database for introspection.  Either connectionFacoty
+  or jdbcConnection must be specified, but not both.
+-->
+<!ELEMENT connectionFactory (property*)>
+<!ATTLIST connectionFactory
+  type CDATA #IMPLIED>
 
 <!--
   The jdbcConnection element is used to describe the JDBC connection that the generator
@@ -139,13 +150,15 @@
   The table element is used to specify a database table that will be the source information
   for a set of generated objects.
 -->
-<!ELEMENT table (property*, generatedKey?, columnRenamingRule?, (columnOverride | ignoreColumn)*) >
+<!ELEMENT table (property*, generatedKey?, columnRenamingRule?, (columnOverride | ignoreColumn | ignoreColumnsByRegex)*) >
 <!ATTLIST table
   catalog CDATA #IMPLIED
   schema CDATA #IMPLIED
   tableName CDATA #REQUIRED
   alias CDATA #IMPLIED
   domainObjectName CDATA #IMPLIED
+  mapperName CDATA #IMPLIED
+  sqlProviderName CDATA #IMPLIED
   enableInsert CDATA #IMPLIED
   enableSelectByPrimaryKey CDATA #IMPLIED
   enableSelectByExample CDATA #IMPLIED
@@ -172,6 +185,7 @@
   javaType CDATA #IMPLIED
   jdbcType CDATA #IMPLIED
   typeHandler CDATA #IMPLIED
+  isGeneratedAlways CDATA #IMPLIED
   delimitedColumnName CDATA #IMPLIED>
 
 <!--
@@ -181,6 +195,25 @@
 -->
 <!ELEMENT ignoreColumn EMPTY>
 <!ATTLIST ignoreColumn
+  column CDATA #REQUIRED
+  delimitedColumnName CDATA #IMPLIED>
+
+<!--
+  The ignoreColumnsByRegex element is used to identify a column pattern that should be ignored.
+  No generated SQL will refer to the column, and no property will be generated
+  for the column in the model objects.
+-->
+<!ELEMENT ignoreColumnsByRegex (except*)>
+<!ATTLIST ignoreColumnsByRegex
+  pattern CDATA #REQUIRED>
+
+<!--
+  The except element is used to identify an exception to the ignoreColumnsByRegex rule.
+  If a column matches the regex rule, but also matches the exception, then the
+  column will be included in the generated objects.
+-->
+<!ELEMENT except EMPTY>
+<!ATTLIST except
   column CDATA #REQUIRED
   delimitedColumnName CDATA #IMPLIED>
 
