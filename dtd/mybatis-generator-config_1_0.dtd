@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2006-2016 the original author or authors.
+       Copyright 2006-2017 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -150,7 +150,7 @@
   The table element is used to specify a database table that will be the source information
   for a set of generated objects.
 -->
-<!ELEMENT table (property*, generatedKey?, columnRenamingRule?, (columnOverride | ignoreColumn | ignoreColumnsByRegex)*) >
+<!ELEMENT table (property*, generatedKey?, domainObjectRenamingRule?, columnRenamingRule?, (columnOverride | ignoreColumn | ignoreColumnsByRegex)*) >
 <!ATTLIST table
   catalog CDATA #IMPLIED
   schema CDATA #IMPLIED
@@ -227,6 +227,15 @@
   sqlStatement CDATA #REQUIRED
   identity CDATA #IMPLIED
   type CDATA #IMPLIED>
+
+<!--
+  The domainObjectRenamingRule element is used to specify a rule for renaming
+  object domain name before the corresponding domain object name is calculated
+-->
+<!ELEMENT domainObjectRenamingRule EMPTY>
+<!ATTLIST domainObjectRenamingRule
+  searchString CDATA #REQUIRED
+  replaceString CDATA #IMPLIED>
 
 <!--
   The columnRenamingRule element is used to specify a rule for renaming
