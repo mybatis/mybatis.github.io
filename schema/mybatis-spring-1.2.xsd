@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright 2010-2013 the original author or authors.
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+       Copyright 2010-2018 the original author or authors.
 
-        http://www.apache.org/licenses/LICENSE-2.0
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
 -->
 <xsd:schema xmlns="http://mybatis.org/schema/mybatis-spring"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -45,7 +47,7 @@
         <xsd:annotation>
           <xsd:documentation>
             <![CDATA[
-              The scanner will register all interfaces in the base package that also have the specified annotation.
+              The scanner will register all interfaces in the base package that also have the specified interface class as a parent.
             ]]>
           </xsd:documentation>
           <xsd:appinfo>
@@ -59,7 +61,7 @@
         <xsd:annotation>
           <xsd:documentation>
             <![CDATA[
-              The scanner will register all interfaces in the base package that also have the specified interface class as a parent.
+              The scanner will register all interfaces in the base package that also have the specified annotation.
             ]]>
           </xsd:documentation>
           <xsd:appinfo>
@@ -76,7 +78,12 @@
             <![CDATA[
               Specifies which SqlSessionFactory to use in the case that there is more than one in the spring context. Usually this is only needed when you have more than one datasource.
                     ]]>
-                  </xsd:documentation>
+          </xsd:documentation>
+          <xsd:appinfo>
+            <tool:annotation kind="ref">
+              <tool:expected-type type="org.apache.ibatis.session.SqlSessionFactory"/>
+            </tool:annotation>
+          </xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="template-ref" type="xsd:string">
@@ -86,6 +93,11 @@
               Specifies which SqlSessionTemplate to use in the case that there is more than one in the spring context. Usually this is only needed when you have more than one datasource.
             ]]>
           </xsd:documentation>
+          <xsd:appinfo>
+            <tool:annotation kind="ref">
+              <tool:expected-type type="org.mybatis.spring.SqlSessionTemplate"/>
+            </tool:annotation>
+          </xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="name-generator" type="xsd:string">
