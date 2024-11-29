@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
 
-       Copyright 2009-2018 the original author or authors.
+       Copyright 2009-2022 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
        You may obtain a copy of the License at
 
-          http://www.apache.org/licenses/LICENSE-2.0
+          https://www.apache.org/licenses/LICENSE-2.0
 
        Unless required by applicable law or agreed to in writing, software
        distributed under the License is distributed on an "AS IS" BASIS,
@@ -61,7 +61,7 @@ extends CDATA #IMPLIED
 autoMapping (true|false) #IMPLIED
 >
 
-<!ELEMENT constructor (idArg*,arg*)>
+<!ELEMENT constructor ((idArg|arg)*)>
 
 <!ELEMENT id EMPTY>
 <!ATTLIST id
@@ -184,6 +184,7 @@ databaseId CDATA #IMPLIED
 lang CDATA #IMPLIED
 resultOrdered (true|false) #IMPLIED
 resultSets CDATA #IMPLIED 
+affectData (true|false) #IMPLIED
 >
 
 <!ELEMENT insert (#PCDATA | selectKey | include | trim | where | set | foreach | choose | if | bind)*>
@@ -271,6 +272,7 @@ suffixOverrides CDATA #IMPLIED
 <!ELEMENT foreach (#PCDATA | include | trim | where | set | foreach | choose | if | bind)*>
 <!ATTLIST foreach
 collection CDATA #REQUIRED
+nullable (true|false) #IMPLIED
 item CDATA #IMPLIED
 index CDATA #IMPLIED
 open CDATA #IMPLIED
